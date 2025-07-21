@@ -6,6 +6,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    profilePicUrl: {
+        type: String,
+        default: null
+    },
+    rollNo: {
+        type: String,
+        required: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,
@@ -15,10 +24,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    profilePicUrl: {
+    role: {
         type: String,
-        default: null
+        enum: ['admin', 'student'],
+        required: true,
+        default: 'student'
     },
+    allotment: {
+        hostel: {
+            type: String,
+            default: null
+        },
+        block: {
+            type: String,
+            default: null
+        },
+        roomNo: {
+            type: String,
+            default: null
+        }
+    }
 }, {timestamps: true}
 );
 

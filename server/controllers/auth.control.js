@@ -19,6 +19,7 @@ export const login = async (req, res) => {
         }
         const payload = {
             _id: user._id,
+            role: user.role
         };
         const token = jwt.sign(payload, secret, {
             expiresIn: "3d"
