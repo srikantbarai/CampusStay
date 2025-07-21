@@ -4,9 +4,9 @@ import {Button} from './components/ui/button'
 function App() {
   
   return (
-    <>
-      <Button variant="secondary">Click me</Button>
-    </>
+    <div className="App">
+      
+    </div>
   )
 }
 
