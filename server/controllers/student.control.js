@@ -9,7 +9,6 @@ export const getStudentAllotment = async (req, res) => {
         }
         return res.status(200).json({data: student});
     } catch (error) {
-        console.error("Error fetching student details:", error);
         return res.status(500).json({data: "Error fetching student details"});
     }
 }
@@ -78,7 +77,6 @@ export const allotRoom = async (req, res) => {
             { $addToSet: { occupants: studentId } },
             { new: true }
         );
-        
         if (!updatedRoom) {
             if (currentRoom) {
                 await Room.findByIdAndUpdate(
@@ -88,7 +86,6 @@ export const allotRoom = async (req, res) => {
             }
             return res.status(400).json({ data: "Room became full or unavailable" });
         }
-
         await User.findByIdAndUpdate(
             studentId,
             {
@@ -97,13 +94,11 @@ export const allotRoom = async (req, res) => {
                 }
             }
         );
-        
         const updatedStudent = await User.findById(studentId).populate('roomId').select("-password");
         const finalRoom = await Room.findById(roomId).populate({
             path: 'occupants',
             select: 'fullName rollNo email'
         });
-        
         return res.status(200).json({
             data: {
                 student: {
