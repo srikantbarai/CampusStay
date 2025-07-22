@@ -39,6 +39,16 @@ export const login = async (req, res) => {
     }
 }
 
+export const getMyInfo = async (req, res) => {
+    try {
+        const me = await User.findById(req.user._id).select("-password");
+        return res.status(200).json({ data: me });
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ data: "Error fetching user info" });
+    }
+}
+
 export const logout = async (req, res) => {
     try {
         res.cookie('jwt', '', {
