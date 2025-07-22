@@ -17,15 +17,16 @@ const PORT = process.env.PORT || 8000;
 app.set("trust proxy", 1);
 
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    process.env.FRONTEND_URL
-  ].filter(Boolean),
-  credentials: true,
-  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
-  preflightContinue: false,
-  optionsSuccessStatus: 204
+    origin: true,
+    // origin: [
+    //   "http://localhost:5173",
+    //   process.env.FRONTEND_URL
+    // ].filter(Boolean),
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 };
 app.use(cors(corsOptions));
 
