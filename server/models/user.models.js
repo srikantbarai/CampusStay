@@ -35,25 +35,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: 'student'
     },
-    allotment: {
-        hostel: {
-            type: String,
-            enum: ['KMS', 'BF', 'CVR', 'VS', 'SD', 'GDB', 'MV', 'MSS', 'DBA', 'HB'],
-            default: null
-        },
-        block: {
-            type: String,
-            enum: ['A', 'B', 'C'],
-            default: null
-        },
-        floor: {
-            type: Number,
-            default: null
-        },
-        roomNo: {
-            type: Number,
-            default: null
-        }
+    room: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Room",
+        default: null
     }
 }, {timestamps: true}
 );

@@ -8,7 +8,7 @@ import { connectDB } from "./lib/db.js";
 import { verifyToken, isAdmin } from "./middlewares/auth.middleware.js";
 
 import authRoute from "./routes/auth.route.js";
-// import studentRoute from "./routes/student.route.js";
+import studentRoute from "./routes/student.route.js";
 import adminRoute from "./routes/admin.route.js";
 
 const app = express();
@@ -50,8 +50,8 @@ app.use(apiLimiter);
 
 app.use(verifyToken);
 
-// app.use("/api/student", studentRoute);
 app.use("/api/admin", isAdmin, adminRoute);
+app.use("/api/student",studentRoute);
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
