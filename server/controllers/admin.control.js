@@ -30,6 +30,41 @@ export const createStudent = async (req, res) => {
     }
 };
 
+export const listStudents = async (req, res) => {
+    try {
+        const students = await User.find({ role: 'student' })
+            .populate('room')
+            .select('-password -role');
+        if (!students) {
+            return res.status(404).json({ data: "No students found" });
+        }
+        return res.status(200).json({ data: students });
+    } catch (error) {
+        console.error("Error fetching students:", error);
+        return res.status(500).json({ data: "Error fetching students" });
+    }
+};
+
+export const deleteStudent = async (req, res) => {
+    try {
+        const studentId = req.params.studentId;
+        const student = await User.findById(studentId);
+        if (!student) {
+            return res.status(404).json({ data: "Student not found" });
+        }
+        if (student.room) {
+            await Room.findByIdAndUpdate(
+                student.room,
+                { $pull: { occupants: studentId } }
+            );
+        }
+        await User.findByIdAndDelete(studentId);
+        return res.status(200).json({ data: "Student deleted successfully" });
+    } catch (error) {
+        return res.status(500).json({ data: "Error deleting student" });
+    }
+}
+
 export const listRooms = async (req, res) => {
     try {
         const { hostel, block, floor } = req.query;
@@ -48,15 +83,3 @@ export const listRooms = async (req, res) => {
         return res.status(500).json({ data: "Error fetching rooms" });
     }
 };
-
-export const deleteStudent = async (req, res) => {
-    try {
-        const studentId = req.params.studentId;
-        const student = await User.findById(studentId);
-        if (!student) return res.status(404).json({ data: "Student not found" });
-        await User.findByIdAndDelete(studentId);
-        return res.status(200).json({ data: "Student deleted successfully" });
-    } catch (error) {
-        return res.status(500).json({ data: "Error deleting student" });
-    }
-}
