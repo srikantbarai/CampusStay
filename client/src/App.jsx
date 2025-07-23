@@ -1,11 +1,11 @@
 import React from 'react'
-import {Button} from './components/ui/button'
+import LandingPage from './component/LandingPage'
 
 function App() {
   
   return (
-    <div className="App">
-      
+    <div>
+        <LandingPage/>
     </div>
   )
 }
