@@ -35,7 +35,7 @@
 
 ## 🚀 Live Demo & Code
 
-- 🔗 [Live Link](#)  
+- 🔗 [Live Link](https://campus-stay-1ssp6wajc-srikanta-barais-projects.vercel.app/)  
 - 📦 [GitHub Repository](https://github.com/srikantbarai/CampusStay)
 
 ---
