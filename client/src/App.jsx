@@ -1,54 +1,84 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { useAuth } from './context/AuthContext'
-import Login from './pages/Login'
-import AdminDashboard from './pages/AdminDashboard'
-import StudentDashboard from './pages/StudentDashboard'
-import Layout from './components/Layout'
-import ProtectedRoute from './components/ProtectedRoute'
-import Loading from './components/Loading'
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import Login from "./pages/LoginPage";
+import useGetMyInfo from "./hooks/useGetMyInfo";
+import AdminHome from "./pages/AdminHome";
+import AdminRooms from "./pages/AdminRooms";
+import StudentHome from "./pages/StudentHome";
+import StudentApply from "./pages/StudentApply";
 
 function App() {
-  const { user, loading } = useAuth()
+  const { myInfo, isLoading } = useGetMyInfo();
+  const isAuthenticated = Boolean(myInfo);
+  const isAdmin = myInfo?.role === "admin";
+  const isStudent = myInfo?.role === "student";
 
-  if (loading) {
-    return <Loading />
-  }
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <Routes>
-      <Route path="/login" element={
-        user ? (
-          <Navigate to={user.role === 'admin' ? '/admin' : '/student'} replace />
-        ) : (
-          <Login />
-        )
-      } />
-      
-      <Route path="/admin/*" element={
-        <ProtectedRoute requiredRole="admin">
-          <Layout>
-            <AdminDashboard />
-          </Layout>
-        </ProtectedRoute>
-      } />
-      
-      <Route path="/student/*" element={
-        <ProtectedRoute requiredRole="student">
-          <Layout>
-            <StudentDashboard />
-          </Layout>
-        </ProtectedRoute>
-      } />
-      
-      <Route path="/" element={
-        user ? (
-          <Navigate to={user.role === 'admin' ? '/admin' : '/student'} replace />
-        ) : (
-          <Navigate to="/login" replace />
-        )
-      } />
+      {/* Root redirect */}
+      <Route
+        path="/"
+        element={
+          isAuthenticated ? (
+            <Navigate to={isAdmin ? "/admin" : "/student"} />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+
+      {/* Login */}
+      <Route
+        path="/login"
+        element={
+          !isAuthenticated ? (
+            <Login />
+          ) : (
+            <Navigate to={isAdmin ? "/admin" : "/student"} />
+          )
+        }
+      />
+
+      {/* Admin Routes */}
+      <Route
+        path="/admin"
+        element={
+          isAuthenticated && isAdmin ? <AdminHome /> : <Navigate to="/login" />
+        }
+      />
+      <Route
+        path="/admin/rooms"
+        element={
+          isAuthenticated && isAdmin ? <AdminRooms /> : <Navigate to="/login" />
+        }
+      />
+
+      {/* Student Routes */}
+      <Route
+        path="/student"
+        element={
+          isAuthenticated && isStudent ? (
+            <StudentHome />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+      <Route
+        path="/student/apply"
+        element={
+          isAuthenticated && isStudent ? (
+            <StudentApply />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;

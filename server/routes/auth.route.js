@@ -14,7 +14,7 @@ const loginLimiter = rateLimit({
 });
 
 router.post("/login", loginLimiter, login);
-router.get("/me", verifyToken, getMyInfo)
+router.get("/me", verifyToken, getMyInfo);
 router.post("/logout", logout);
 
 export default router;
