@@ -8,7 +8,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://campusstay-3v5w.onrender.com',
+        target: import.meta.env.VITE_BACKEND_URL,
         changeOrigin: true,
         secure: false,
       }
