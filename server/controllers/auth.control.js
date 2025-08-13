@@ -11,11 +11,11 @@ export const login = async (req, res) => {
         }
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(401).json({ data: "Invalid email or password" });
+            return res.status(401).json({ data: "Invalid email" });
         }
         const isPasswordCorrect = await user.matchPassword(password);
         if (!isPasswordCorrect) {
-            return res.status(401).json({ data: "Invalid email or password" });
+            return res.status(401).json({ data: "Invalid password" });
         }
         const payload = {
             _id: user._id,
