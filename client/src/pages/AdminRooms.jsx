@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { listRooms } from "../lib/api.js";
 
-export default function AdminRoomsPage() {
+const AdminRooms = () => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
@@ -100,3 +100,5 @@ export default function AdminRoomsPage() {
     </div>
   );
 }
+
+export default AdminRooms;

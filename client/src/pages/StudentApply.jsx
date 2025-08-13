@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useGetMyInfo from "../hooks/useGetMyInfo";
 import { getAvailableRooms, allotRoom } from "../lib/api";
 
-export default function StudentApply() {
+const StudentApply = () => {
   const { myInfo } = useGetMyInfo();
   const [filters, setFilters] = useState({
     hostel: "",
@@ -103,3 +103,5 @@ export default function StudentApply() {
     </div>
   );
 }
+
+export default StudentApply;

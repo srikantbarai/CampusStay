@@ -8,7 +8,7 @@ import AdminRooms from "./pages/AdminRooms";
 import StudentHome from "./pages/StudentHome";
 import StudentApply from "./pages/StudentApply";
 
-function App() {
+const App = () => {
   const { myInfo, isLoading } = useGetMyInfo();
   const isAuthenticated = Boolean(myInfo);
   const isAdmin = myInfo?.role === "admin";

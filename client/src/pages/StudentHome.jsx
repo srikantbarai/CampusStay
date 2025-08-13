@@ -1,9 +1,8 @@
-// StudentAllotmentPage.jsx
 import React, { useEffect, useState } from "react";
-import { getStudentAllotment } from "../lib/api"; // your API functions
+import { getStudentAllotment } from "../lib/api"; 
 import { Link } from "react-router-dom";
 
-export default function StudentAllotmentPage() {
+const StudentHome = () => {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -52,3 +51,5 @@ export default function StudentAllotmentPage() {
     </div>
   );
 }
+
+export default StudentHome;

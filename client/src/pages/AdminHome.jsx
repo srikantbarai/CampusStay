@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { listStudents, deleteStudent, createStudent } from "../lib/api";
 
-export default function AdminStudentsPage() {
+const AdminHome = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -157,3 +157,5 @@ export default function AdminStudentsPage() {
     </div>
   );
 }
+
+export default AdminHome;
