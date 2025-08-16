@@ -19,7 +19,7 @@ const Navbar = () => {
   const handleImageError = (e) => {
     console.log("Image failed to load:", e.target.src);
     setImageError(true);
-    e.target.src = "/default-avatar.png"; // Fallback image
+    e.target.src = "/default-avatar.png"; 
   };
 
   const handleImageLoad = () => {
@@ -78,10 +78,18 @@ const Navbar = () => {
       alignItems: "center",
       boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <h3 style={{ margin: 0, color: "#343a40" }}>Hostel Management System</h3>
+      
+      {/* LEFT SIDE: Logo + Title */}
+      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+        <img 
+          src="/logo.png" 
+          alt="Logo" 
+          style={{ height: "40px", width: "40px", objectFit: "contain" }}
+        />
+        <h3 style={{ margin: 0, color: "#343a40" }}>CampusStay</h3>
       </div>
       
+      {/* RIGHT SIDE: User Info + Logout */}
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         {myInfo && (
           <>
@@ -103,31 +111,6 @@ const Navbar = () => {
                     onError={handleImageError}
                     onLoad={handleImageLoad}
                   />
-                  {!imageError && (
-                    <div style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(0,0,0,0.1)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      opacity: 0,
-                      transition: "opacity 0.3s ease"
-                    }}>
-                      <div style={{
-                        width: "20px",
-                        height: "20px",
-                        border: "2px solid #fff",
-                        borderTop: "2px solid transparent",
-                        borderRadius: "50%",
-                        animation: "spin 1s linear infinite"
-                      }}></div>
-                    </div>
-                  )}
                 </div>
               )}
               

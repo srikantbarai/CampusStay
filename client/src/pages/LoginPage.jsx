@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Lock, Eye, EyeOff, Building2, Users } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, Users } from "lucide-react";
 import useLogin from "../hooks/useLogin";
 
 const Login = () => {
@@ -58,14 +58,22 @@ const Login = () => {
               justifyContent: "center",
               marginBottom: "15px"
             }}>
-              <Building2 style={{ width: "32px", height: "32px", color: "#007bff", marginRight: "10px" }} />
+              <img 
+                src="/logo.png" 
+                alt="Logo" 
+                style={{ 
+                  width: "32px", 
+                  height: "32px", 
+                  marginRight: "10px" 
+                }} 
+              />
               <h2 style={{ 
                 fontSize: "28px", 
                 fontWeight: "bold", 
                 color: "#343a40",
                 margin: 0
               }}>
-                HostelMS
+                CampusStay
               </h2>
             </div>
             <p style={{ 
@@ -250,7 +258,14 @@ const Login = () => {
             boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
             marginBottom: "25px"
           }}>
-            <Building2 style={{ width: "64px", height: "64px", color: "#007bff" }} />
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              style={{ 
+                width: "64px", 
+                height: "64px" 
+              }} 
+            />
           </div>
           
           <h3 style={{ 
@@ -260,7 +275,7 @@ const Login = () => {
             marginBottom: "20px",
             margin: "0 0 20px 0"
           }}>
-            Hostel Management System
+            CampusStay
           </h3>
           
           <div style={{ marginBottom: "25px" }}>
@@ -282,7 +297,15 @@ const Login = () => {
               color: "#495057",
               justifyContent: "center"
             }}>
-              <Building2 style={{ width: "20px", height: "20px", color: "#007bff", marginRight: "12px" }} />
+              <img 
+                src="/logo.png" 
+                alt="Logo" 
+                style={{ 
+                  width: "20px", 
+                  height: "20px", 
+                  marginRight: "12px" 
+                }} 
+              />
               <span>Room Allocation & Management</span>
             </div>
           </div>

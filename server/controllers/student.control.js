@@ -15,11 +15,12 @@ export const getStudentAllotment = async (req, res) => {
 
 export const getAvailableRooms = async (req, res) => {
     try {
-        const { hostel, block, floor } = req.query;
+        const { hostel, block, floor, gender } = req.query;
         const filter = {};
         if (hostel) filter.hostel = hostel;
         if (block) filter.block = block;
         if (floor) filter.floor = parseInt(floor);
+        filter.gender = gender;
         const rooms = await Room.find(filter);
         const availableRooms = rooms
             .filter(room => room.occupants.length < room.capacity)

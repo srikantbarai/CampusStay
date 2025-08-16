@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { listRooms } from "../lib/api.js";
-import Navbar from "../components/Navbar"; // Adjust path as needed
+import Navbar from "../components/Navbar"; 
 
 const AdminRooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -10,6 +10,10 @@ const AdminRooms = () => {
     block: "",
     floor: ""
   });
+
+  const hostelOptions = ['KMS', 'BF', 'CVR', 'VS', 'SD', 'GDB', 'MV', 'MSS', 'DBA', 'HB'];
+  const blockOptions = ['A', 'B', 'C'];
+  const floorOptions = [1, 2, 3, 4];
 
   const fetchRooms = async (filterParams = {}) => {
     try {
@@ -24,7 +28,7 @@ const AdminRooms = () => {
   };
 
   useEffect(() => {
-    fetchRooms(); // fetch all rooms by default
+    fetchRooms(); 
   }, []);
 
   const handleSubmit = (e) => {
@@ -51,51 +55,94 @@ const AdminRooms = () => {
       <div style={{ padding: "20px" }}>
         <h1>Admin - Rooms</h1>
 
+        {/* Filter Section */}
         <div style={{ 
           backgroundColor: "#f8f9fa", 
           padding: "20px", 
           borderRadius: "8px", 
-          marginBottom: "20px" 
+          marginBottom: "20px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
         }}>
           <h3>Filter Rooms</h3>
-          <form onSubmit={handleSubmit} style={{ display: "flex", gap: "10px", alignItems: "end" }}>
+          <form 
+            onSubmit={handleSubmit} 
+            style={{ 
+              display: "flex", 
+              gap: "20px", 
+              alignItems: "end", 
+              flexWrap: "wrap",
+              justifyContent: "center"
+            }}
+          >
             <div>
               <label style={{ display: "block", marginBottom: "5px" }}>Hostel:</label>
-              <input
-                type="text"
-                placeholder="Hostel"
+              <select
                 value={filters.hostel}
                 onChange={(e) => setFilters({ ...filters, hostel: e.target.value })}
-                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
-              />
+                style={{ 
+                  padding: "10px", 
+                  borderRadius: "4px", 
+                  border: "1px solid #ccc", 
+                  backgroundColor: "white",
+                  minWidth: "150px"
+                }}
+              >
+                <option value="">All</option>
+                {hostelOptions.map((h) => (
+                  <option key={h} value={h}>{h}</option>
+                ))}
+              </select>
             </div>
+
             <div>
               <label style={{ display: "block", marginBottom: "5px" }}>Block:</label>
-              <input
-                type="text"
-                placeholder="Block"
+              <select
                 value={filters.block}
                 onChange={(e) => setFilters({ ...filters, block: e.target.value })}
-                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
-              />
+                style={{ 
+                  padding: "10px", 
+                  borderRadius: "4px", 
+                  border: "1px solid #ccc", 
+                  backgroundColor: "white",
+                  minWidth: "150px"
+                }}
+              >
+                <option value="">All</option>
+                {blockOptions.map((b) => (
+                  <option key={b} value={b}>{b}</option>
+                ))}
+              </select>
             </div>
+
             <div>
               <label style={{ display: "block", marginBottom: "5px" }}>Floor:</label>
-              <input
-                type="number"
-                placeholder="Floor"
+              <select
                 value={filters.floor}
                 onChange={(e) => setFilters({ ...filters, floor: e.target.value })}
-                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
-              />
+                style={{ 
+                  padding: "10px", 
+                  borderRadius: "4px", 
+                  border: "1px solid #ccc", 
+                  backgroundColor: "white",
+                  minWidth: "150px"
+                }}
+              >
+                <option value="">All</option>
+                {floorOptions.map((f) => (
+                  <option key={f} value={f}>{f}</option>
+                ))}
+              </select>
             </div>
+
             <button 
               type="submit"
               style={{
                 backgroundColor: "#007bff",
                 color: "white",
                 border: "none",
-                padding: "8px 16px",
+                padding: "10px 20px",
                 borderRadius: "4px",
                 cursor: "pointer"
               }}
@@ -109,7 +156,7 @@ const AdminRooms = () => {
                 backgroundColor: "#6c757d",
                 color: "white",
                 border: "none",
-                padding: "8px 16px",
+                padding: "10px 20px",
                 borderRadius: "4px",
                 cursor: "pointer"
               }}
@@ -119,6 +166,7 @@ const AdminRooms = () => {
           </form>
         </div>
 
+        {/* Rooms Table */}
         {loading ? (
           <p>Loading rooms...</p>
         ) : (
@@ -143,13 +191,12 @@ const AdminRooms = () => {
                   <th>Floor</th>
                   <th>Room No</th>
                   <th>Occupants</th>
-                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 {rooms.length === 0 ? (
                   <tr>
-                    <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
+                    <td colSpan="5" style={{ textAlign: "center", padding: "20px" }}>
                       No rooms found with current filters
                     </td>
                   </tr>
@@ -160,7 +207,7 @@ const AdminRooms = () => {
                       <td>{room.block}</td>
                       <td>{room.floor}</td>
                       <td style={{ fontWeight: "bold" }}>{room.roomNo}</td>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         {room.occupants && room.occupants.length > 0 ? (
                           <div>
                             {room.occupants.map((o, index) => (
@@ -172,19 +219,6 @@ const AdminRooms = () => {
                         ) : (
                           <span style={{ color: "#6c757d", fontStyle: "italic" }}>Empty</span>
                         )}
-                      </td>
-                      <td>
-                        <span 
-                          style={{ 
-                            padding: "4px 8px", 
-                            borderRadius: "4px", 
-                            fontSize: "0.8rem",
-                            backgroundColor: room.occupants && room.occupants.length > 0 ? "#d4edda" : "#fff3cd",
-                            color: room.occupants && room.occupants.length > 0 ? "#155724" : "#856404"
-                          }}
-                        >
-                          {room.occupants && room.occupants.length > 0 ? "Occupied" : "Available"}
-                        </span>
                       </td>
                     </tr>
                   ))

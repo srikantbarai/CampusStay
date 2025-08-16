@@ -141,7 +141,12 @@ const AdminHome = () => {
       <div style={{ padding: "20px" }}>
         <h1>Admin - Students</h1>
 
-        <div style={{ marginBottom: "20px" }}>
+        <div style={{ 
+          marginBottom: "20px", 
+          display: "flex", 
+          justifyContent: "center", 
+          gap: "20px" 
+        }}>
           <button 
             onClick={() => setShowForm(true)}
             style={{
@@ -151,19 +156,25 @@ const AdminHome = () => {
               padding: "10px 20px",
               borderRadius: "4px",
               cursor: "pointer",
-              marginRight: "10px"
+              fontSize: "16px"
             }}
           >
             Create Student
           </button>
+          
           <a 
             href="admin/rooms" 
             style={{ 
-              color: "#007bff", 
-              textDecoration: "none",
+              backgroundColor: "#007bff",
+              color: "white", 
+              border: "none",
               padding: "10px 20px",
-              border: "1px solid #007bff",
-              borderRadius: "4px"
+              borderRadius: "4px",
+              cursor: "pointer",
+              textDecoration: "none",
+              fontSize: "16px",
+              display: "inline-block",
+              textAlign: "center"
             }}
           >
             Manage Rooms
