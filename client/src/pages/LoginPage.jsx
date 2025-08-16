@@ -102,7 +102,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                placeholder="student@example.com or admin@example.com"
+                placeholder="<studentrollno>@nitrkl.ac.in"
                 value={loginData.email}
                 onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                 required
