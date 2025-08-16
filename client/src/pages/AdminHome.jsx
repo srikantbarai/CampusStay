@@ -184,7 +184,16 @@ const AdminHome = () => {
         {loading ? (
           <p>Loading students...</p>
         ) : (
-          <table border="1" cellPadding="10" style={{ marginTop: "10px", width: "100%", borderCollapse: "collapse" }}>
+          <table 
+            border="1" 
+            cellPadding="10" 
+            style={{ 
+              marginTop: "10px", 
+              width: "100%", 
+              borderCollapse: "collapse",
+              textAlign: "center"  
+            }}
+          >
             <thead>
               <tr style={{ backgroundColor: "#f8f9fa" }}>
                 <th>Full Name</th>
@@ -198,7 +207,9 @@ const AdminHome = () => {
             <tbody>
               {students.length === 0 ? (
                 <tr>
-                  <td colSpan="6" style={{ textAlign: "center" }}>No students found</td>
+                  <td colSpan="6" style={{ textAlign: "center" }}>
+                    No students found
+                  </td>
                 </tr>
               ) : (
                 students.map((student) => (
@@ -243,6 +254,7 @@ const AdminHome = () => {
               )}
             </tbody>
           </table>
+
         )}
 
         {showForm && (
