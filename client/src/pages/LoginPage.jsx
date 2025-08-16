@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Mail, Lock, Eye, EyeOff, Building2, Users } from "lucide-react";
-
 import useLogin from "../hooks/useLogin";
 
 const Login = () => {
@@ -17,66 +16,165 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="max-w-4xl w-full max-h-[90vh] bg-white shadow-xl rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+    <div style={{
+      minHeight: "100vh",
+      backgroundColor: "#f8f9fa",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "20px"
+    }}>
+      <div style={{
+        maxWidth: "1000px",
+        width: "100%",
+        backgroundColor: "white",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+        borderRadius: "8px",
+        overflow: "hidden",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        minHeight: "600px"
+      }}>
         
-        <div className="p-6 md:p-8">
+        <div style={{ padding: "40px" }}>
           {error && (
-            <div className="text-red-500 text-sm mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+            <div style={{
+              color: "#dc3545",
+              fontSize: "14px",
+              marginBottom: "20px",
+              padding: "15px",
+              backgroundColor: "#f8d7da",
+              border: "1px solid #f5c6cb",
+              borderRadius: "4px"
+            }}>
               {error?.response?.data?.message || "Login failed. Please try again."}
             </div>
           )}
           
-          <div className="mb-6 text-center">
-            <div className="flex items-center justify-center mb-4">
-              <Building2 className="w-8 h-8 text-blue-600 mr-2" />
-              <h2 className="text-3xl font-extrabold text-gray-800">HostelMS</h2>
+          <div style={{ marginBottom: "30px", textAlign: "center" }}>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "15px"
+            }}>
+              <Building2 style={{ width: "32px", height: "32px", color: "#007bff", marginRight: "10px" }} />
+              <h2 style={{ 
+                fontSize: "28px", 
+                fontWeight: "bold", 
+                color: "#343a40",
+                margin: 0
+              }}>
+                HostelMS
+              </h2>
             </div>
-            <p className="text-sm text-gray-500 mt-1">
+            <p style={{ 
+              fontSize: "14px", 
+              color: "#6c757d", 
+              marginTop: "5px",
+              margin: 0
+            }}>
               Hostel Management System
             </p>
-            <h1 className="text-xl font-semibold mt-4 text-gray-700">Welcome back, please sign in</h1>
+            <h1 style={{ 
+              fontSize: "20px", 
+              fontWeight: "600", 
+              marginTop: "20px", 
+              color: "#495057",
+              margin: "20px 0 0 0"
+            }}>
+              Welcome back, please sign in
+            </h1>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-5">
-            <div>
-              <label htmlFor="email" className="flex items-center text-gray-700 font-medium mb-2 gap-2">
-                <Mail className="w-4 h-4" />
+          <form onSubmit={handleLogin}>
+            <div style={{ marginBottom: "20px" }}>
+              <label style={{
+                display: "flex",
+                alignItems: "center",
+                color: "#495057",
+                fontWeight: "bold",
+                marginBottom: "8px",
+                gap: "8px"
+              }}>
+                <Mail style={{ width: "16px", height: "16px" }} />
                 Email Address
               </label>
               <input
-                id="email"
                 type="email"
                 placeholder="student@example.com or admin@example.com"
                 value={loginData.email}
                 onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  fontSize: "14px",
+                  outline: "none",
+                  transition: "border-color 0.2s ease"
+                }}
+                onFocus={(e) => e.target.style.borderColor = "#007bff"}
+                onBlur={(e) => e.target.style.borderColor = "#ccc"}
               />
             </div>
 
-            <div>
-              <label htmlFor="password" className="flex items-center text-gray-700 font-medium mb-2 gap-2">
-                <Lock className="w-4 h-4" />
+            <div style={{ marginBottom: "25px" }}>
+              <label style={{
+                display: "flex",
+                alignItems: "center",
+                color: "#495057",
+                fontWeight: "bold",
+                marginBottom: "8px",
+                gap: "8px"
+              }}>
+                <Lock style={{ width: "16px", height: "16px" }} />
                 Password
               </label>
-              <div className="relative">
+              <div style={{ position: "relative" }}>
                 <input
-                  id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   value={loginData.password}
                   onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                  style={{
+                    width: "100%",
+                    padding: "12px",
+                    paddingRight: "45px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "14px",
+                    outline: "none",
+                    transition: "border-color 0.2s ease"
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = "#007bff"}
+                  onBlur={(e) => e.target.style.borderColor = "#ccc"}
                 />
                 <button
                   type="button"
-                  className="absolute right-3 top-3.5 text-gray-500 hover:text-gray-700"
+                  style={{
+                    position: "absolute",
+                    right: "12px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    background: "none",
+                    border: "none",
+                    color: "#6c757d",
+                    cursor: "pointer",
+                    padding: "0",
+                    display: "flex",
+                    alignItems: "center"
+                  }}
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  onMouseOver={(e) => e.target.style.color = "#495057"}
+                  onMouseOut={(e) => e.target.style.color = "#6c757d"}
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? 
+                    <EyeOff style={{ width: "16px", height: "16px" }} /> : 
+                    <Eye style={{ width: "16px", height: "16px" }} />
+                  }
                 </button>
               </div>
             </div>
@@ -84,11 +182,39 @@ const Login = () => {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-3 rounded-md transition duration-200 flex items-center justify-center"
+              style={{
+                width: "100%",
+                backgroundColor: isPending ? "#6c757d" : "#007bff",
+                color: "white",
+                fontWeight: "500",
+                padding: "12px",
+                border: "none",
+                borderRadius: "4px",
+                cursor: isPending ? "not-allowed" : "pointer",
+                fontSize: "16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "background-color 0.2s ease"
+              }}
+              onMouseOver={(e) => {
+                if (!isPending) e.target.style.backgroundColor = "#0056b3";
+              }}
+              onMouseOut={(e) => {
+                if (!isPending) e.target.style.backgroundColor = "#007bff";
+              }}
             >
               {isPending ? (
                 <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  <div style={{
+                    width: "16px",
+                    height: "16px",
+                    border: "2px solid white",
+                    borderTop: "2px solid transparent",
+                    borderRadius: "50%",
+                    animation: "spin 1s linear infinite",
+                    marginRight: "8px"
+                  }}></div>
                   Signing in...
                 </>
               ) : (
@@ -97,32 +223,77 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500">
+          <div style={{ marginTop: "25px", textAlign: "center" }}>
+            <p style={{ 
+              fontSize: "14px", 
+              color: "#6c757d",
+              margin: 0
+            }}>
               Need help? Contact your hostel administrator
             </p>
           </div>
         </div>
 
-        <div className="hidden md:flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-8 text-center">
-          <div className="bg-white rounded-full p-6 shadow-lg mb-6">
-            <Building2 className="w-16 h-16 text-blue-600" />
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "linear-gradient(135deg, #e3f2fd 0%, #e8eaf6 100%)",
+          padding: "40px",
+          textAlign: "center"
+        }}>
+          <div style={{
+            backgroundColor: "white",
+            borderRadius: "50%",
+            padding: "24px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            marginBottom: "25px"
+          }}>
+            <Building2 style={{ width: "64px", height: "64px", color: "#007bff" }} />
           </div>
           
-          <h3 className="font-bold text-blue-900 text-xl mb-4">Hostel Management System</h3>
+          <h3 style={{ 
+            fontWeight: "bold", 
+            color: "#1a365d", 
+            fontSize: "20px", 
+            marginBottom: "20px",
+            margin: "0 0 20px 0"
+          }}>
+            Hostel Management System
+          </h3>
           
-          <div className="space-y-4 text-gray-700">
-            <div className="flex items-center text-sm">
-              <Users className="w-5 h-5 text-blue-600 mr-3" />
+          <div style={{ marginBottom: "25px" }}>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+              color: "#495057",
+              marginBottom: "15px",
+              justifyContent: "center"
+            }}>
+              <Users style={{ width: "20px", height: "20px", color: "#007bff", marginRight: "12px" }} />
               <span>Student & Admin Access</span>
             </div>
-            <div className="flex items-center text-sm">
-              <Building2 className="w-5 h-5 text-blue-600 mr-3" />
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+              color: "#495057",
+              justifyContent: "center"
+            }}>
+              <Building2 style={{ width: "20px", height: "20px", color: "#007bff", marginRight: "12px" }} />
               <span>Room Allocation & Management</span>
             </div>
           </div>
           
-          <p className="text-gray-600 text-sm mt-6 leading-relaxed">
+          <p style={{ 
+            color: "#6c757d", 
+            fontSize: "14px", 
+            lineHeight: "1.6",
+            margin: 0,
+            maxWidth: "280px"
+          }}>
             Streamline hostel operations with our comprehensive management system. 
             Students can view room allotments and request changes, while administrators 
             can efficiently manage student records and room assignments.
@@ -130,6 +301,25 @@ const Login = () => {
         </div>
 
       </div>
+
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          
+          @media (max-width: 768px) {
+            .login-container {
+              grid-template-columns: 1fr !important;
+              max-width: 400px !important;
+            }
+            .info-panel {
+              display: none !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
