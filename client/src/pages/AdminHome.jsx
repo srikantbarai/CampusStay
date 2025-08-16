@@ -198,6 +198,7 @@ const AdminHome = () => {
               <tr style={{ backgroundColor: "#f8f9fa" }}>
                 <th>Full Name</th>
                 <th>Roll No</th>
+                <th>Email</th>
                 <th>Gender</th>
                 <th>Room</th>
                 <th>Profile Picture</th>
@@ -207,7 +208,7 @@ const AdminHome = () => {
             <tbody>
               {students.length === 0 ? (
                 <tr>
-                  <td colSpan="6" style={{ textAlign: "center" }}>
+                  <td colSpan="7" style={{ textAlign: "center" }}>
                     No students found
                   </td>
                 </tr>
@@ -216,8 +217,13 @@ const AdminHome = () => {
                   <tr key={student._id}>
                     <td>{student.fullName}</td>
                     <td>{student.rollNo}</td>
+                    <td>{student.email}</td>
                     <td style={{ textTransform: "capitalize" }}>{student.gender}</td>
-                    <td>{student.room ? student.room.roomNo : "Not allotted"}</td>
+                    <td>
+                      {student.room
+                        ? `${student.room.hostel} - Block ${student.room.block} - Room ${student.room.roomNo}`
+                        : "Not allotted"}
+                    </td>
                     <td>
                       <img 
                         src={student.profilePicUrl} 
@@ -254,7 +260,6 @@ const AdminHome = () => {
               )}
             </tbody>
           </table>
-
         )}
 
         {showForm && (
