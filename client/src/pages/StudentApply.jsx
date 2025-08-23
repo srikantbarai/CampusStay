@@ -93,7 +93,6 @@ const StudentApply = () => {
           </div>
         )}
 
-        {/* ✅ Filter Section */}
         <div
           style={{
             backgroundColor: "#f8f9fa",
@@ -111,7 +110,7 @@ const StudentApply = () => {
               gap: "20px",
               alignItems: "end",
               flexWrap: "wrap",
-              justifyContent: "center", // ✅ Center align
+              justifyContent: "center",
             }}
           >
             <div>
@@ -132,7 +131,7 @@ const StudentApply = () => {
                   padding: "10px",
                   borderRadius: "4px",
                   border: "1px solid #ccc",
-                  minWidth: "200px", // ✅ wider input
+                  minWidth: "200px", 
                   backgroundColor: "white",
                 }}
               >
@@ -162,7 +161,7 @@ const StudentApply = () => {
                   padding: "10px",
                   borderRadius: "4px",
                   border: "1px solid #ccc",
-                  minWidth: "150px", // ✅ wider input
+                  minWidth: "150px",
                   backgroundColor: "white",
                 }}
               >
@@ -192,7 +191,7 @@ const StudentApply = () => {
                   padding: "10px",
                   borderRadius: "4px",
                   border: "1px solid #ccc",
-                  minWidth: "150px", // ✅ wider input
+                  minWidth: "150px",
                   backgroundColor: "white",
                 }}
               >
@@ -235,7 +234,6 @@ const StudentApply = () => {
           </div>
         </div>
 
-        {/* ✅ Available Rooms Section remains same */}
         <div>
           <h2>Available Rooms</h2>
           {loading ? (

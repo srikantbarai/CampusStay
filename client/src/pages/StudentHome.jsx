@@ -77,7 +77,6 @@ const StudentHome = () => {
           Apply for Room Change
         </Link>
 
-        {/* Two cards side by side */}
         <div
           style={{
             display: "flex",
@@ -88,7 +87,6 @@ const StudentHome = () => {
             maxWidth: "1100px",
           }}
         >
-          {/* Personal Info Card */}
           <div
             style={{
               flex: 1,
@@ -123,7 +121,6 @@ const StudentHome = () => {
             </div>
           </div>
 
-          {/* Room Allotment Card */}
           <div
             style={{
               flex: 1,
@@ -193,7 +190,6 @@ const StudentHome = () => {
           </div>
         </div>
 
-        {/* Footer Help */}
         <p style={{ color: "#6c757d", fontSize: "14px", textAlign: "center" }}>
           Need help? Contact the hostel administration for assistance with room
           allotment.

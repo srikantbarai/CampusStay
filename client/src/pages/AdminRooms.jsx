@@ -55,7 +55,6 @@ const AdminRooms = () => {
       <div style={{ padding: "20px" }}>
         <h1>Admin - Rooms</h1>
 
-        {/* Filter Section */}
         <div style={{ 
           backgroundColor: "#f8f9fa", 
           padding: "20px", 
@@ -166,7 +165,6 @@ const AdminRooms = () => {
           </form>
         </div>
 
-        {/* Rooms Table */}
         {loading ? (
           <p>Loading rooms...</p>
         ) : (
@@ -181,7 +179,8 @@ const AdminRooms = () => {
                 marginTop: "10px", 
                 width: "100%", 
                 borderCollapse: "collapse",
-                backgroundColor: "white"
+                backgroundColor: "white",
+                textAlign: "center"   
               }}
             >
               <thead>
@@ -207,9 +206,9 @@ const AdminRooms = () => {
                       <td>{room.block}</td>
                       <td>{room.floor}</td>
                       <td style={{ fontWeight: "bold" }}>{room.roomNo}</td>
-                      <td style={{ textAlign: "center" }}>
+                      <td>
                         {room.occupants && room.occupants.length > 0 ? (
-                          <div>
+                          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                             {room.occupants.map((o, index) => (
                               <div key={index} style={{ marginBottom: "5px" }}>
                                 <strong>{o.fullName}</strong> ({o.rollNo})
